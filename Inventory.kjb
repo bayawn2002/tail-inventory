@@ -216,18 +216,18 @@
       <description/>
       <type>FTP_PUT</type>
       <servername>ftp.gsipartners.com</servername>
-      <serverport>21</serverport>
+      <serverport/>
       <username>dsgtail</username>
       <password>Encrypted 2be98afc86aa787b5a82af927e691a8ff</password>
       <remoteDirectory>&#x2f;put&#x2f;inventory</remoteDirectory>
-      <localDirectory>&#x24;&#x7b;Internal.Transformation.Filename.Directory&#x7d;&#x2f;&#x24;&#x7b;INV_FILE_NAME&#x7d;</localDirectory>
-      <wildcard/>
+      <localDirectory>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;</localDirectory>
+      <wildcard>inv.txt</wildcard>
       <binary>N</binary>
       <timeout>0</timeout>
       <remove>N</remove>
       <only_new>N</only_new>
       <active>N</active>
-      <control_encoding>ISO-8859-1</control_encoding>
+      <control_encoding>UTF-8</control_encoding>
       <proxy_host/>
       <proxy_port/>
       <proxy_username/>
