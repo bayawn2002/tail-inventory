@@ -9,11 +9,6 @@
     <trans_status>0</trans_status>
     <directory>&#x2f;</directory>
     <parameters>
-        <parameter>
-            <name>MY.COMPANY</name>
-            <default_value>&#x24;&#x7b;COMPANY&#x7d;</default_value>
-            <description/>
-        </parameter>
     </parameters>
     <log>
 <trans-log-table><connection/>
@@ -84,7 +79,9 @@
   <hop> <from>Read Config</from><to>Set Variables</to><enabled>N</enabled> </hop>
   <hop> <from>Set Variables</from><to>Set Environment Variables</to><enabled>N</enabled> </hop>
   <hop> <from>Set Variables</from><to>Copy rows to result</to><enabled>N</enabled> </hop>
-  <hop> <from>Read Config</from><to>Copy rows to result</to><enabled>Y</enabled> </hop>
+  <hop> <from>Read Config</from><to>Copy rows to result</to><enabled>N</enabled> </hop>
+  <hop> <from>Read Config 2</from><to>Write to log</to><enabled>Y</enabled> </hop>
+  <hop> <from>Write to log</from><to>Copy rows to result</to><enabled>Y</enabled> </hop>
   </order>
   <step>
     <name>Copy rows to result</name>
@@ -275,8 +272,111 @@
     <spreadsheet_type>POI</spreadsheet_type>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>99</xloc>
-      <yloc>174</yloc>
+      <xloc>96</xloc>
+      <yloc>218</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Read Config 2</name>
+    <type>GoogleSpreadsheetInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+<serviceEmail>tail-vendor-direct&#x40;api-project-341582285243.iam.gserviceaccount.com</serviceEmail>
+<spreadsheetKey>1ftRzieU-7BEnLG4Km16hce6GPMG4-YJIaTv9WQ6J6a4</spreadsheetKey>
+<worksheetId>oapooq4</worksheetId>
+<privateKeyStore><![CDATA[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]]></privateKeyStore><fields><field><field_name>company</field_name>
+<field_type>String</field_type>
+<field_format/>
+<field_currency/>
+<field_decimal/>
+<field_group/>
+<field_length>-1</field_length>
+<field_precision>-1</field_precision>
+<field_trim_type>none</field_trim_type>
+</field><field><field_name>discount</field_name>
+<field_type>String</field_type>
+<field_format/>
+<field_currency/>
+<field_decimal/>
+<field_group/>
+<field_length>-1</field_length>
+<field_precision>-1</field_precision>
+<field_trim_type>none</field_trim_type>
+</field><field><field_name>setupsheetattributes</field_name>
+<field_type>String</field_type>
+<field_format/>
+<field_currency/>
+<field_decimal/>
+<field_group/>
+<field_length>-1</field_length>
+<field_precision>-1</field_precision>
+<field_trim_type>none</field_trim_type>
+</field><field><field_name>inventoryattributes</field_name>
+<field_type>String</field_type>
+<field_format/>
+<field_currency/>
+<field_decimal/>
+<field_group/>
+<field_length>-1</field_length>
+<field_precision>-1</field_precision>
+<field_trim_type>none</field_trim_type>
+</field><field><field_name>zeroinventory</field_name>
+<field_type>String</field_type>
+<field_format/>
+<field_currency/>
+<field_decimal/>
+<field_group/>
+<field_length>-1</field_length>
+<field_precision>-1</field_precision>
+<field_trim_type>none</field_trim_type>
+</field><field><field_name>inventorydeliveryoption</field_name>
+<field_type>String</field_type>
+<field_format/>
+<field_currency/>
+<field_decimal/>
+<field_group/>
+<field_length>-1</field_length>
+<field_precision>-1</field_precision>
+<field_trim_type>none</field_trim_type>
+</field><field><field_name>ftplocation</field_name>
+<field_type>String</field_type>
+<field_format/>
+<field_currency/>
+<field_decimal/>
+<field_group/>
+<field_length>-1</field_length>
+<field_precision>-1</field_precision>
+<field_trim_type>none</field_trim_type>
+</field><field><field_name>ftpfiledelimiter</field_name>
+<field_type>String</field_type>
+<field_format/>
+<field_currency/>
+<field_decimal/>
+<field_group/>
+<field_length>-1</field_length>
+<field_precision>-1</field_precision>
+<field_trim_type>none</field_trim_type>
+</field><field><field_name>ftpfilename</field_name>
+<field_type>String</field_type>
+<field_format/>
+<field_currency/>
+<field_decimal/>
+<field_group/>
+<field_length>-1</field_length>
+<field_precision>-1</field_precision>
+<field_trim_type>none</field_trim_type>
+</field></fields>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>88</xloc>
+      <yloc>156</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -329,6 +429,32 @@
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>357</xloc>
       <yloc>79</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Write to log</name>
+    <type>WriteToLog</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <loglevel>log_level_basic</loglevel>
+      <displayHeader>Y</displayHeader>
+      <limitRows>N</limitRows>
+      <limitRowsNumber>0</limitRowsNumber>
+      <logmessage>email&#x3d;&#x24;&#x7b;GOOGLE_EMAIL&#x7d;</logmessage>
+    <fields>
+      </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>307</xloc>
+      <yloc>155</yloc>
       <draw>Y</draw>
       </GUI>
     </step>

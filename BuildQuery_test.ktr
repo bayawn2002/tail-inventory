@@ -69,10 +69,52 @@
   <created_date>2016&#x2f;07&#x2f;22 14&#x3a;22&#x3a;59.207</created_date>
   <modified_user>-</modified_user>
   <modified_date>2016&#x2f;07&#x2f;22 14&#x3a;22&#x3a;59.207</modified_date>
-    <key_for_session_key/>
+    <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA&#x3d;</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
+    <notepad>
+      <note>old read generic master file&#xa;</note>
+      <xloc>701</xloc>
+      <yloc>411</yloc>
+      <width>193</width>
+      <heigth>44</heigth>
+      <fontname>Ubuntu</fontname>
+      <fontsize>11</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>205</backgroundcolorgreen>
+      <backgroundcolorblue>112</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>Add company master file here</note>
+      <xloc>650</xloc>
+      <yloc>85</yloc>
+      <width>210</width>
+      <heigth>27</heigth>
+      <fontname>Ubuntu</fontname>
+      <fontsize>11</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>205</backgroundcolorgreen>
+      <backgroundcolorblue>112</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
   </notepads>
   <connection>
     <name>DATA</name>
@@ -105,15 +147,36 @@
   <hop> <from>Get rows from result 2</from><to>Stream lookup</to><enabled>Y</enabled> </hop>
   <hop> <from>Write to log</from><to>Stream lookup</to><enabled>Y</enabled> </hop>
   <hop> <from>Group by</from><to>Write to log</to><enabled>Y</enabled> </hop>
-  <hop> <from>Modified Java Script Value</from><to>Group by</to><enabled>Y</enabled> </hop>
-  <hop> <from>Read Master File Items</from><to>Modified Java Script Value</to><enabled>Y</enabled> </hop>
-  <hop> <from>Get rows from result</from><to>Modified Java Script Value 2</to><enabled>Y</enabled> </hop>
+  <hop> <from>Get rows from result</from><to>Modified Java Script Value 2</to><enabled>N</enabled> </hop>
   <hop> <from>Stream lookup</from><to>Modified Java Script Value 3</to><enabled>Y</enabled> </hop>
   <hop> <from>Modified Java Script Value 3</from><to>Write to log 2</to><enabled>Y</enabled> </hop>
-  <hop> <from>Modified Java Script Value 2</from><to>Write to log 3</to><enabled>Y</enabled> </hop>
-  <hop> <from>Write to log 3</from><to>Read Master File Items</to><enabled>Y</enabled> </hop>
+  <hop> <from>Modified Java Script Value 2</from><to>Write to log 3</to><enabled>N</enabled> </hop>
   <hop> <from>Write to log 2</from><to>Copy rows to result</to><enabled>Y</enabled> </hop>
+  <hop> <from>Read DSG Master File </from><to>Set test to DSG</to><enabled>Y</enabled> </hop>
+  <hop> <from>Write to log 3</from><to>Switch &#x2f; Case</to><enabled>Y</enabled> </hop>
+  <hop> <from>Switch &#x2f; Case</from><to>Read DSG Master File </to><enabled>Y</enabled> </hop>
+  <hop> <from>Set test to DSG</from><to>Group by</to><enabled>Y</enabled> </hop>
+  <hop> <from>Get rows from result</from><to>Write to log 3</to><enabled>Y</enabled> </hop>
   </order>
+  <step>
+    <name>Copy rows to result</name>
+    <type>RowsToResult</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>944</xloc>
+      <yloc>207</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
   <step>
     <name>Get rows from result</name>
     <type>RowsFromResult</type>
@@ -131,8 +194,342 @@
         <precision>-1</precision>
         </field>      </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>157</xloc>
+      <yloc>14</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Get rows from result 2</name>
+    <type>RowsFromResult</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>      <field>        <name>company</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        </field>      </fields>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>155</xloc>
-      <yloc>15</yloc>
+      <yloc>203</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Group by</name>
+    <type>GroupBy</type>
+    <description/>
+    <distribute>N</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <all_rows>N</all_rows>
+      <ignore_aggregate>N</ignore_aggregate>
+      <field_ignore/>
+      <directory>&#x25;&#x25;java.io.tmpdir&#x25;&#x25;</directory>
+      <prefix>grp</prefix>
+      <add_linenr>N</add_linenr>
+      <linenr_fieldname/>
+      <give_back_row>N</give_back_row>
+      <group>
+        <field>
+          <name>test</name>
+        </field>
+      </group>
+      <fields>
+        <field>
+          <aggregate>SQL_LIST</aggregate>
+          <subject>Style</subject>
+          <type>CONCAT_STRING</type>
+          <valuefield>&#x27;,&#x27;</valuefield>
+        </field>
+      </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>444</xloc>
+      <yloc>76</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Modified Java Script Value 2</name>
+    <type>ScriptValueMod</type>
+    <description/>
+    <distribute>N</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <compatible>N</compatible>
+    <optimizationLevel>9</optimizationLevel>
+    <jsScripts>      <jsScript>        <jsScript_type>0</jsScript_type>
+        <jsScript_name>Script 1</jsScript_name>
+        <jsScript_script>&#x2f;&#x2f;Script here&#xd;&#xa;&#xd;&#xa;var filename &#x3d; getVariable&#x28;&#x27;Internal.Transformation.Filename.Directory&#x27;, &#x27;r&#x27;&#x29; &#x2b; &#x27;&#x2f;data&#x2f;master_&#x27; &#x2b; company &#x2b; &#x27;.xlsx&#x27;&#x3b;</jsScript_script>
+      </jsScript>    </jsScripts>    <fields>      <field>        <name>filename</name>
+        <rename>filename</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>    </fields>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>271</xloc>
+      <yloc>44</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Modified Java Script Value 3</name>
+    <type>ScriptValueMod</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <compatible>N</compatible>
+    <optimizationLevel>9</optimizationLevel>
+    <jsScripts>      <jsScript>        <jsScript_type>0</jsScript_type>
+        <jsScript_name>Script 1</jsScript_name>
+        <jsScript_script>&#x2f;&#x2f;Script here&#xd;&#xa;&#xd;&#xa;sql_list &#x3d; &#x22;&#x27;&#x22; &#x2b; sql_list &#x2b;&#x22;&#x27;&#x22;&#x3b;</jsScript_script>
+      </jsScript>    </jsScripts>    <fields>      <field>        <name>sql_list</name>
+        <rename>sql_list</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>Y</replace>
+      </field>    </fields>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>595</xloc>
+      <yloc>206</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Read DSG Master File </name>
+    <type>GoogleSpreadsheetInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+<serviceEmail>tail-vendor-direct&#x40;api-project-341582285243.iam.gserviceaccount.com</serviceEmail>
+<spreadsheetKey>19FkwBqcI8pE565T6-B5PWVI8Zczc1DE1ftTYRbj-uHk</spreadsheetKey>
+<worksheetId>ocoidmc</worksheetId>
+<privateKeyStore><![CDATA[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]]></privateKeyStore><fields><field><field_name>group</field_name>
+<field_type>String</field_type>
+<field_format/>
+<field_currency/>
+<field_decimal/>
+<field_group/>
+<field_length>-1</field_length>
+<field_precision>-1</field_precision>
+<field_trim_type>none</field_trim_type>
+</field><field><field_name>style</field_name>
+<field_type>String</field_type>
+<field_format/>
+<field_currency/>
+<field_decimal/>
+<field_group/>
+<field_length>-1</field_length>
+<field_precision>-1</field_precision>
+<field_trim_type>none</field_trim_type>
+</field><field><field_name>season</field_name>
+<field_type>String</field_type>
+<field_format/>
+<field_currency/>
+<field_decimal/>
+<field_group/>
+<field_length>-1</field_length>
+<field_precision>-1</field_precision>
+<field_trim_type>none</field_trim_type>
+</field><field><field_name>shortcolorcode</field_name>
+<field_type>String</field_type>
+<field_format/>
+<field_currency/>
+<field_decimal/>
+<field_group/>
+<field_length>-1</field_length>
+<field_precision>-1</field_precision>
+<field_trim_type>none</field_trim_type>
+</field><field><field_name>matcolcode</field_name>
+<field_type>String</field_type>
+<field_format/>
+<field_currency/>
+<field_decimal/>
+<field_group/>
+<field_length>-1</field_length>
+<field_precision>-1</field_precision>
+<field_trim_type>none</field_trim_type>
+</field><field><field_name>content</field_name>
+<field_type>String</field_type>
+<field_format/>
+<field_currency/>
+<field_decimal/>
+<field_group/>
+<field_length>-1</field_length>
+<field_precision>-1</field_precision>
+<field_trim_type>none</field_trim_type>
+</field><field><field_name>productname</field_name>
+<field_type>String</field_type>
+<field_format/>
+<field_currency/>
+<field_decimal/>
+<field_group/>
+<field_length>-1</field_length>
+<field_precision>-1</field_precision>
+<field_trim_type>none</field_trim_type>
+</field><field><field_name>category</field_name>
+<field_type>String</field_type>
+<field_format/>
+<field_currency/>
+<field_decimal/>
+<field_group/>
+<field_length>-1</field_length>
+<field_precision>-1</field_precision>
+<field_trim_type>none</field_trim_type>
+</field><field><field_name>subcategory</field_name>
+<field_type>String</field_type>
+<field_format/>
+<field_currency/>
+<field_decimal/>
+<field_group/>
+<field_length>-1</field_length>
+<field_precision>-1</field_precision>
+<field_trim_type>none</field_trim_type>
+</field><field><field_name>wbcolorwaydescription</field_name>
+<field_type>String</field_type>
+<field_format/>
+<field_currency/>
+<field_decimal/>
+<field_group/>
+<field_length>-1</field_length>
+<field_precision>-1</field_precision>
+<field_trim_type>none</field_trim_type>
+</field><field><field_name>length</field_name>
+<field_type>String</field_type>
+<field_format/>
+<field_currency/>
+<field_decimal/>
+<field_group/>
+<field_length>-1</field_length>
+<field_precision>-1</field_precision>
+<field_trim_type>none</field_trim_type>
+</field><field><field_name>sizescale</field_name>
+<field_type>String</field_type>
+<field_format/>
+<field_currency/>
+<field_decimal/>
+<field_group/>
+<field_length>-1</field_length>
+<field_precision>-1</field_precision>
+<field_trim_type>none</field_trim_type>
+</field><field><field_name>pricecode</field_name>
+<field_type>String</field_type>
+<field_format/>
+<field_currency/>
+<field_decimal/>
+<field_group/>
+<field_length>-1</field_length>
+<field_precision>-1</field_precision>
+<field_trim_type>none</field_trim_type>
+</field><field><field_name>upf</field_name>
+<field_type>String</field_type>
+<field_format/>
+<field_currency/>
+<field_decimal/>
+<field_group/>
+<field_length>-1</field_length>
+<field_precision>-1</field_precision>
+<field_trim_type>none</field_trim_type>
+</field><field><field_name>shorties</field_name>
+<field_type>String</field_type>
+<field_format/>
+<field_currency/>
+<field_decimal/>
+<field_group/>
+<field_length>-1</field_length>
+<field_precision>-1</field_precision>
+<field_trim_type>none</field_trim_type>
+</field><field><field_name>bra</field_name>
+<field_type>String</field_type>
+<field_format/>
+<field_currency/>
+<field_decimal/>
+<field_group/>
+<field_length>-1</field_length>
+<field_precision>-1</field_precision>
+<field_trim_type>none</field_trim_type>
+</field><field><field_name>llforecast</field_name>
+<field_type>String</field_type>
+<field_format/>
+<field_currency/>
+<field_decimal/>
+<field_group/>
+<field_length>-1</field_length>
+<field_precision>-1</field_precision>
+<field_trim_type>none</field_trim_type>
+</field><field><field_name>finalwbdescription</field_name>
+<field_type>String</field_type>
+<field_format/>
+<field_currency/>
+<field_decimal/>
+<field_group/>
+<field_length>-1</field_length>
+<field_precision>-1</field_precision>
+<field_trim_type>none</field_trim_type>
+</field><field><field_name>_dcgjs</field_name>
+<field_type>String</field_type>
+<field_format/>
+<field_currency/>
+<field_decimal/>
+<field_group/>
+<field_length>-1</field_length>
+<field_precision>-1</field_precision>
+<field_trim_type>none</field_trim_type>
+</field><field><field_name>_ddv49</field_name>
+<field_type>String</field_type>
+<field_format/>
+<field_currency/>
+<field_decimal/>
+<field_group/>
+<field_length>-1</field_length>
+<field_precision>-1</field_precision>
+<field_trim_type>none</field_trim_type>
+</field><field><field_name>_d415a</field_name>
+<field_type>String</field_type>
+<field_format/>
+<field_currency/>
+<field_decimal/>
+<field_group/>
+<field_length>-1</field_length>
+<field_precision>-1</field_precision>
+<field_trim_type>none</field_trim_type>
+</field></fields>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>712</xloc>
+      <yloc>14</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -160,9 +557,9 @@
     <limit>0</limit>
     <encoding>UTF-8</encoding>
     <add_to_result_filenames>N</add_to_result_filenames>
-    <accept_filenames>Y</accept_filenames>
-    <accept_field>filename</accept_field>
-    <accept_stepname>Write to log 3</accept_stepname>
+    <accept_filenames>N</accept_filenames>
+    <accept_field/>
+    <accept_stepname/>
     <file>
       <name>&#x24;&#x7b;Internal.Transformation.Filename.Directory&#x7d;&#x2f;data&#x2f;master_&#x24;&#x7b;company&#x7d;.xlsx</name>
       <filemask/>
@@ -235,114 +632,38 @@
     <spreadsheet_type>POI</spreadsheet_type>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>577</xloc>
-      <yloc>12</yloc>
+      <xloc>829</xloc>
+      <yloc>388</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Write to log</name>
-    <type>WriteToLog</type>
+    <name>Set test to DSG</name>
+    <type>ScriptValueMod</type>
     <description/>
-    <distribute>Y</distribute>
+    <distribute>N</distribute>
     <custom_distribution/>
     <copies>1</copies>
          <partitioning>
            <method>none</method>
            <schema_name/>
            </partitioning>
-      <loglevel>log_level_basic</loglevel>
-      <displayHeader>Y</displayHeader>
-      <limitRows>N</limitRows>
-      <limitRowsNumber>0</limitRowsNumber>
-      <logmessage/>
-    <fields>
-      <field>
-        <name>test</name>
-        </field>
-      <field>
-        <name>SQL_LIST</name>
-        </field>
-      </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>442</xloc>
-      <yloc>141</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Copy rows to result</name>
-    <type>RowsToResult</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>944</xloc>
-      <yloc>207</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Get rows from result 2</name>
-    <type>RowsFromResult</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <fields>      <field>        <name>company</name>
+    <compatible>N</compatible>
+    <optimizationLevel>9</optimizationLevel>
+    <jsScripts>      <jsScript>        <jsScript_type>0</jsScript_type>
+        <jsScript_name>Script 1</jsScript_name>
+        <jsScript_script>&#x2f;&#x2f;Script here&#xd;&#xa;&#xd;&#xa;&#x2f;&#x2f; need to get back company from filename&#xd;&#xa;&#x2f;&#x2f;var filename_parts &#x3d; short_filename.split&#x28;&#x27;&#x2f;&#x27;&#x29;&#x3b;&#xd;&#xa;&#x2f;&#x2f;var filename_full &#x3d; filename_parts&#x5b;filename_parts.length-1&#x5d;&#x3b;&#xd;&#xa;&#x2f;&#x2f;var filename_ext &#x3d; &#x27;.&#x27; &#x2b; short_filename_ext&#x3b;&#xd;&#xa;&#x2f;&#x2f;var filename_prefix &#x3d; &#x27;master_&#x27;&#x3b;  &#x2f;&#x2f; preset&#xd;&#xa;var test &#x3d; &#x27;DSG&#x27;&#x3b;&#x2f;&#x2f;filename_full.replace&#x28;filename_ext, &#x27;&#x27;&#x29;.replace&#x28;filename_prefix, &#x27;&#x27;&#x29;&#x3b;</jsScript_script>
+      </jsScript>    </jsScripts>    <fields>      <field>        <name>test</name>
+        <rename>test</rename>
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
-        </field>      </fields>     <cluster_schema/>
+        <replace>N</replace>
+      </field>    </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>155</xloc>
-      <yloc>203</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Write to log 2</name>
-    <type>WriteToLog</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-      <loglevel>log_level_basic</loglevel>
-      <displayHeader>Y</displayHeader>
-      <limitRows>N</limitRows>
-      <limitRowsNumber>0</limitRowsNumber>
-      <logmessage/>
-    <fields>
-      <field>
-        <name>company</name>
-        </field>
-      <field>
-        <name>sql_list</name>
-        </field>
-      </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>773</xloc>
-      <yloc>206</yloc>
+      <xloc>889</xloc>
+      <yloc>11</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -384,108 +705,8 @@
     </step>
 
   <step>
-    <name>Group by</name>
-    <type>GroupBy</type>
-    <description/>
-    <distribute>N</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-      <all_rows>N</all_rows>
-      <ignore_aggregate>N</ignore_aggregate>
-      <field_ignore/>
-      <directory>&#x25;&#x25;java.io.tmpdir&#x25;&#x25;</directory>
-      <prefix>grp</prefix>
-      <add_linenr>N</add_linenr>
-      <linenr_fieldname/>
-      <give_back_row>N</give_back_row>
-      <group>
-        <field>
-          <name>test</name>
-        </field>
-      </group>
-      <fields>
-        <field>
-          <aggregate>SQL_LIST</aggregate>
-          <subject>Style</subject>
-          <type>CONCAT_STRING</type>
-          <valuefield>&#x27;,&#x27;</valuefield>
-        </field>
-      </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>444</xloc>
-      <yloc>76</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Modified Java Script Value</name>
-    <type>ScriptValueMod</type>
-    <description/>
-    <distribute>N</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <compatible>N</compatible>
-    <optimizationLevel>9</optimizationLevel>
-    <jsScripts>      <jsScript>        <jsScript_type>0</jsScript_type>
-        <jsScript_name>Script 1</jsScript_name>
-        <jsScript_script>&#x2f;&#x2f;Script here&#xd;&#xa;&#xd;&#xa;&#x2f;&#x2f; need to get back company from filename&#xd;&#xa;var filename_parts &#x3d; short_filename.split&#x28;&#x27;&#x2f;&#x27;&#x29;&#x3b;&#xd;&#xa;var filename_full &#x3d; filename_parts&#x5b;filename_parts.length-1&#x5d;&#x3b;&#xd;&#xa;var filename_ext &#x3d; &#x27;.&#x27; &#x2b; short_filename_ext&#x3b;&#xd;&#xa;var filename_prefix &#x3d; &#x27;master_&#x27;&#x3b;  &#x2f;&#x2f; preset&#xd;&#xa;var test &#x3d; filename_full.replace&#x28;filename_ext, &#x27;&#x27;&#x29;.replace&#x28;filename_prefix, &#x27;&#x27;&#x29;&#x3b;</jsScript_script>
-      </jsScript>    </jsScripts>    <fields>      <field>        <name>test</name>
-        <rename>test</rename>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <replace>N</replace>
-      </field>    </fields>     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>577</xloc>
-      <yloc>77</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Modified Java Script Value 2</name>
-    <type>ScriptValueMod</type>
-    <description/>
-    <distribute>N</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <compatible>N</compatible>
-    <optimizationLevel>9</optimizationLevel>
-    <jsScripts>      <jsScript>        <jsScript_type>0</jsScript_type>
-        <jsScript_name>Script 1</jsScript_name>
-        <jsScript_script>&#x2f;&#x2f;Script here&#xd;&#xa;&#xd;&#xa;var filename &#x3d; getVariable&#x28;&#x27;Internal.Transformation.Filename.Directory&#x27;, &#x27;r&#x27;&#x29; &#x2b; &#x27;&#x2f;data&#x2f;master_&#x27; &#x2b; company &#x2b; &#x27;.xlsx&#x27;&#x3b;</jsScript_script>
-      </jsScript>    </jsScripts>    <fields>      <field>        <name>filename</name>
-        <rename>filename</rename>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <replace>N</replace>
-      </field>    </fields>     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>337</xloc>
-      <yloc>14</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Modified Java Script Value 3</name>
-    <type>ScriptValueMod</type>
+    <name>Switch &#x2f; Case</name>
+    <type>SwitchCase</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -494,20 +715,82 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <compatible>N</compatible>
-    <optimizationLevel>9</optimizationLevel>
-    <jsScripts>      <jsScript>        <jsScript_type>0</jsScript_type>
-        <jsScript_name>Script 1</jsScript_name>
-        <jsScript_script>&#x2f;&#x2f;Script here&#xd;&#xa;&#xd;&#xa;sql_list &#x3d; &#x22;&#x27;&#x22; &#x2b; sql_list &#x2b;&#x22;&#x27;&#x22;&#x3b;</jsScript_script>
-      </jsScript>    </jsScripts>    <fields>      <field>        <name>sql_list</name>
-        <rename>sql_list</rename>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <replace>Y</replace>
-      </field>    </fields>     <cluster_schema/>
+<fieldname>company</fieldname>
+<use_contains>Y</use_contains>
+<case_value_type>String</case_value_type>
+<case_value_format/>
+<case_value_decimal/>
+<case_value_group/>
+<default_target_step/>
+<cases><case><value>DSG</value>
+<target_step>Read DSG Master File </target_step>
+</case></cases>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>595</xloc>
+      <xloc>566</xloc>
+      <yloc>13</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Write to log</name>
+    <type>WriteToLog</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <loglevel>log_level_basic</loglevel>
+      <displayHeader>Y</displayHeader>
+      <limitRows>N</limitRows>
+      <limitRowsNumber>0</limitRowsNumber>
+      <logmessage/>
+    <fields>
+      <field>
+        <name>test</name>
+        </field>
+      <field>
+        <name>SQL_LIST</name>
+        </field>
+      </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>442</xloc>
+      <yloc>141</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Write to log 2</name>
+    <type>WriteToLog</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <loglevel>log_level_basic</loglevel>
+      <displayHeader>Y</displayHeader>
+      <limitRows>N</limitRows>
+      <limitRowsNumber>0</limitRowsNumber>
+      <logmessage/>
+    <fields>
+      <field>
+        <name>company</name>
+        </field>
+      <field>
+        <name>sql_list</name>
+        </field>
+      </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>773</xloc>
       <yloc>206</yloc>
       <draw>Y</draw>
       </GUI>

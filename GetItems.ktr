@@ -155,7 +155,9 @@
   <hop> <from>Write to log 299999</from><to>Get Results from Porini</to><enabled>Y</enabled> </hop>
   <hop> <from>Modify inventory values</from><to>Write out inventory file</to><enabled>Y</enabled> </hop>
   <hop> <from>Write to log</from><to>Get Variables 2</to><enabled>Y</enabled> </hop>
-  <hop> <from>Get Variables 2</from><to>Modify inventory values</to><enabled>Y</enabled> </hop>
+  <hop> <from>Get Variables 2</from><to>Stream lookup</to><enabled>Y</enabled> </hop>
+  <hop> <from>Stream lookup</from><to>Modify inventory values</to><enabled>Y</enabled> </hop>
+  <hop> <from>Read DSG Master File </from><to>Stream lookup</to><enabled>Y</enabled> </hop>
   </order>
   <step>
     <name>Get Results from Porini</name>
@@ -184,6 +186,108 @@
     </step>
 
   <step>
+    <name>Get Variables</name>
+    <type>GetVariable</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>COMPANY</name>
+        <variable>&#x24;&#x7b;COMPANY&#x7d;</variable>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>SQL_ITEM_LIST</name>
+        <variable>&#x24;&#x7b;SQL_LIST&#x7d;</variable>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>106</xloc>
+      <yloc>68</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Get Variables 2</name>
+    <type>GetVariable</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>FTP_FILE_NAME</name>
+        <variable>&#x24;&#x7b;FTP_FILE_NAME&#x7d;</variable>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>COMPANY</name>
+        <variable>&#x24;&#x7b;COMPANY&#x7d;</variable>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>DISCOUNT</name>
+        <variable>&#x24;&#x7b;DISCOUNT&#x7d;</variable>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>332</xloc>
+      <yloc>260</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
     <name>Modify inventory values</name>
     <type>ScriptValueMod</type>
     <description/>
@@ -198,7 +302,7 @@
     <optimizationLevel>9</optimizationLevel>
     <jsScripts>      <jsScript>        <jsScript_type>0</jsScript_type>
         <jsScript_name>Script 1</jsScript_name>
-        <jsScript_script>&#x2f;&#x2f;Script here&#xa;&#xa;&#x2f;&#x2f;writeToLog&#x28;&#x27;b&#x27;, &#x27;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x27;&#x2b;getVariable&#x28;&#x27;DISCOUNT&#x27;,&#x27;r&#x27;&#x29;.toString&#x28;&#x29;&#x29;&#x3b;&#xa;&#x2f;&#x2f;var totalDiscount &#x3d; getVariable&#x28;&#x27;DISCOUNT&#x27;, 0&#x29;.toString&#x28;&#x29;&#x3b;&#xa;&#x2f;&#x2f;var totalDiscount &#x3d; &#x28;parseFloat&#x28;getVariable&#x28;&#x27;DISCOUNT&#x27;, &#x27;r&#x27;&#x29;.toString&#x28;&#x29;&#x29; &#x2a; parseFloat&#x28;unitCost&#x29;&#x29;&#x3b;&#x2f;&#x2f;.toString&#x28;&#x29;&#x3b;&#xa;&#x2f;&#x2f;setVariable&#x28;&#x27;cost&#x27;,  cost - totalDiscount, &#x27;r&#x27;&#x29;&#x3b;&#xa;&#x2f;&#x2f;var cost &#x3d; &#x28;str2num&#x28;unitCost&#x29; - str2num&#x28;totalDiscount&#x29;&#x29;&#x3b;&#x2f;&#x2f;.toString&#x28;&#x29;&#x3b;&#xd;&#xa;&#x2f;&#x2f;unitCost &#x3d; parseFloat&#x28;unitCost&#x29;.toFixed&#x28;2&#x29;&#x3b;&#xd;&#xa;&#x2f;&#x2f;writeToLog&#x28;&#x27;b&#x27;, parseFloat&#x28;unitCost&#x29;.toFixed&#x28;2&#x29;&#x29;&#x3b;&#xd;&#xa;var unit_cost &#x3d; parseFloat&#x28;wholesale_cost&#x29; &#x2a; parseFloat&#x28;getVariable&#x28;&#x27;DISCOUNT&#x27;, &#x27;r&#x27;&#x29;.toString&#x28;&#x29;&#x29;&#xa;&#x3b;&#xd;&#xa;if&#x28;parseInt&#x28;quantity&#x29; &#x3c; 5&#x29;&#xd;&#xa;	quantity &#x3d; 0&#x3b;</jsScript_script>
+        <jsScript_script>&#x2f;&#x2f;Script here&#xa;&#xa;&#x2f;&#x2f;writeToLog&#x28;&#x27;b&#x27;, &#x27;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x27;&#x2b;getVariable&#x28;&#x27;DISCOUNT&#x27;,&#x27;r&#x27;&#x29;.toString&#x28;&#x29;&#x29;&#x3b;&#xa;&#x2f;&#x2f;var totalDiscount &#x3d; getVariable&#x28;&#x27;DISCOUNT&#x27;, 0&#x29;.toString&#x28;&#x29;&#x3b;&#xa;&#x2f;&#x2f;var totalDiscount &#x3d; &#x28;parseFloat&#x28;getVariable&#x28;&#x27;DISCOUNT&#x27;, &#x27;r&#x27;&#x29;.toString&#x28;&#x29;&#x29; &#x2a; parseFloat&#x28;unitCost&#x29;&#x29;&#x3b;&#x2f;&#x2f;.toString&#x28;&#x29;&#x3b;&#xa;&#x2f;&#x2f;setVariable&#x28;&#x27;cost&#x27;,  cost - totalDiscount, &#x27;r&#x27;&#x29;&#x3b;&#xa;&#x2f;&#x2f;var cost &#x3d; &#x28;str2num&#x28;unitCost&#x29; - str2num&#x28;totalDiscount&#x29;&#x29;&#x3b;&#x2f;&#x2f;.toString&#x28;&#x29;&#x3b;&#xd;&#xa;&#x2f;&#x2f;unitCost &#x3d; parseFloat&#x28;unitCost&#x29;.toFixed&#x28;2&#x29;&#x3b;&#xd;&#xa;&#x2f;&#x2f;writeToLog&#x28;&#x27;b&#x27;, parseFloat&#x28;unitCost&#x29;.toFixed&#x28;2&#x29;&#x29;&#x3b;&#xd;&#xa;var unit_cost &#x3d; parseFloat&#x28;wholesale_cost&#x29; &#x2a; parseFloat&#x28;getVariable&#x28;&#x27;DISCOUNT&#x27;, &#x27;r&#x27;&#x29;.toString&#x28;&#x29;&#x29;&#x3b;&#xa;&#xa;&#x2f;&#x2f; style was found in the pending removal file so 0 must be passed for qty&#xa;if&#x28;pending_removal.equals&#x28;style&#x29;&#x29;&#xa;	quantity &#x3d; 0&#x3b;&#xa;else if&#x28;parseInt&#x28;quantity&#x29; &#x3c; 5&#x29;&#xd;&#xa;	quantity &#x3d; 0&#x3b;</jsScript_script>
       </jsScript>    </jsScripts>    <fields>      <field>        <name>unit_cost</name>
         <rename>unit_cost</rename>
         <type>Number</type>
@@ -213,8 +317,8 @@
         <replace>Y</replace>
       </field>    </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>525</xloc>
-      <yloc>256</yloc>
+      <xloc>562</xloc>
+      <yloc>254</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -325,8 +429,8 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>721</xloc>
-      <yloc>254</yloc>
+      <xloc>743</xloc>
+      <yloc>253</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -353,108 +457,6 @@
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>236</xloc>
       <yloc>258</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Get Variables</name>
-    <type>GetVariable</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <fields>
-      <field>
-        <name>COMPANY</name>
-        <variable>&#x24;&#x7b;COMPANY&#x7d;</variable>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-      </field>
-      <field>
-        <name>SQL_ITEM_LIST</name>
-        <variable>&#x24;&#x7b;SQL_LIST&#x7d;</variable>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-      </field>
-    </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>106</xloc>
-      <yloc>68</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Get Variables 2</name>
-    <type>GetVariable</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <fields>
-      <field>
-        <name>FTP_FILE_NAME</name>
-        <variable>&#x24;&#x7b;FTP_FILE_NAME&#x7d;</variable>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-      </field>
-      <field>
-        <name>COMPANY</name>
-        <variable>&#x24;&#x7b;COMPANY&#x7d;</variable>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-      </field>
-      <field>
-        <name>DISCOUNT</name>
-        <variable>&#x24;&#x7b;DISCOUNT&#x7d;</variable>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-      </field>
-    </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>376</xloc>
-      <yloc>255</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -487,6 +489,73 @@
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>107</xloc>
       <yloc>165</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Read DSG Master File </name>
+    <type>GoogleSpreadsheetInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+<serviceEmail>tail-vendor-direct&#x40;api-project-341582285243.iam.gserviceaccount.com</serviceEmail>
+<spreadsheetKey>1GD2FqUkKKLAjMu-aItDScooSUdHyVWcoZsLUkiDtN6U</spreadsheetKey>
+<worksheetId>od6</worksheetId>
+<privateKeyStore><![CDATA[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]]></privateKeyStore><fields><field><field_name>sccode</field_name>
+<field_type>String</field_type>
+<field_format/>
+<field_currency/>
+<field_decimal/>
+<field_group/>
+<field_length>-1</field_length>
+<field_precision>-1</field_precision>
+<field_trim_type>none</field_trim_type>
+</field></fields>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>437</xloc>
+      <yloc>86</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Stream lookup</name>
+    <type>StreamLookup</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <from>Read DSG Master File </from>
+    <input_sorted>N</input_sorted>
+    <preserve_memory>Y</preserve_memory>
+    <sorted_list>N</sorted_list>
+    <integer_pair>N</integer_pair>
+    <lookup>
+      <key>
+        <name>style</name>
+        <field>sccode</field>
+      </key>
+      <value>
+        <name>sccode</name>
+        <rename>pending_removal</rename>
+        <default/>
+        <type>String</type>
+      </value>
+    </lookup>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>441</xloc>
+      <yloc>256</yloc>
       <draw>Y</draw>
       </GUI>
     </step>

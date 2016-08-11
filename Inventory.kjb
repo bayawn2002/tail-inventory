@@ -76,8 +76,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>119</xloc>
-      <yloc>155</yloc>
+      <xloc>79</xloc>
+      <yloc>158</yloc>
       </entry>
     <entry>
       <name>Read Config</name>
@@ -106,11 +106,14 @@
       <create_parent_folder>N</create_parent_folder>
       <logging_remote_work>N</logging_remote_work>
       <parameters>        <pass_all_parameters>Y</pass_all_parameters>
-      </parameters>      <parallel>N</parallel>
+            <parameter>            <name>GOOGLE_EMAIL</name>
+            <stream_name>&#x24;&#x7b;GOOGLE_EMAIL&#x7d;</stream_name>
+            <value/>
+            </parameter>      </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>222</xloc>
-      <yloc>156</yloc>
+      <xloc>238</xloc>
+      <yloc>157</yloc>
       </entry>
     <entry>
       <name>Get Items Write to file</name>
@@ -140,7 +143,7 @@
       <logging_remote_work>N</logging_remote_work>
       <parameters>        <pass_all_parameters>Y</pass_all_parameters>
             <parameter>            <name>FTP_FILE_NAME</name>
-            <stream_name>ftp_file_name</stream_name>
+            <stream_name>ftpfilename</stream_name>
             <value/>
             </parameter>            <parameter>            <name>COMPANY</name>
             <stream_name>company</stream_name>
